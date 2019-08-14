@@ -69,7 +69,7 @@
 				<tbody>
 					<tr>
 						<th>제목</th>
-						<td><input type="text" name="title" placeholder="제목"></td>
+						<td><input type="text" name="title" placeholder="제목" ></td>
 					</tr>
 					<tr>
 						<th>내용</th>
@@ -79,7 +79,7 @@
 						<th></th>
 						<td><input class="btn-a" type="submit" value="작성"> <input
 							class="btn-a" type="button" value="취소"
-							onclick="location.href = './list';"></td>
+							onclick="location.href = './list?boardId=1';" ></td>
 					</tr>
 				</tbody>
 			</table>
