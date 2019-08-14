@@ -87,12 +87,30 @@ public class ArticleController {
 	}
 
 	@RequestMapping("/article/add")
-	public String showAdd(long boardId, Model model) {
+	public String showAdd(long boardId, Model model, HttpServletRequest rq) {
 		Board board = articleService.getBoard(boardId);
-
+		String msg = "";
+		
+		String redirectUrl = "";
+		Member member = (Member) rq.getAttribute("loginedMember");
+		
+		long permissionLevel = member.getPermissionLevel();
+		
+		if (boardId == 1) {
+			if ( permissionLevel != 1) {
+				msg = "권한이 없습니다.";
+				
+				redirectUrl = "/";
+				
+				model.addAttribute("alertMsg", msg);
+				model.addAttribute("regirectUrl", redirectUrl);
+				
+				return "common/redirect";
+			}
+		}
 		model.addAttribute("board", board);
-
-		return "article/add";
+		
+		return "/article/add";
 	}
 
 	@RequestMapping("/article/doAdd")
